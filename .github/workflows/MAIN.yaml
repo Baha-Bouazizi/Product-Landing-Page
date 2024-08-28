@@ -28,7 +28,6 @@ jobs:
       id: snake-gif
       with:
         github_user_name: Baha-Bouazizi
-        # these next 2 lines generate the files on a branch called "output". This keeps the main branch from cluttering up.
         gif_out_path: dist/github-contribution-grid-snake.gif
         svg_out_path: dist/github-contribution-grid-snake.svg
 
@@ -38,6 +37,13 @@ jobs:
         git status
         git remote -v
         git branch -a
+        git log --oneline -n 10
+
+    # Reset repository state
+    - name: Reset Repository
+      run: |
+        git reset --hard
+        git clean -fd
 
     # Push the changes
     - name: Push changes
@@ -49,7 +55,6 @@ jobs:
 
     - uses: crazy-max/ghaction-github-pages@v2
       with:
-        # the output branch we mentioned above
         target_branch: output
         build_dir: dist
       env:
