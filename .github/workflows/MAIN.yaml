@@ -32,8 +32,12 @@ jobs:
         gif_out_path: dist/github-contribution-grid-snake.gif
         svg_out_path: dist/github-contribution-grid-snake.svg
 
-    # show the status of the build. Makes it easier for debugging (if there's any issues).
-    - run: git status
+    # Debug the git status and configuration
+    - name: Debug Git Status
+      run: |
+        git status
+        git remote -v
+        git branch -a
 
     # Push the changes
     - name: Push changes
